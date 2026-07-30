@@ -1,0 +1,457 @@
+plugins {
+    id "java"
+    id "edu.wpi.first.GradleRIO" version "2026.2.1"
+    id "idea"
+    id "com.peterabeles.gversion" version "1.10"
+    id "com.diffplug.spotless" version "6.25.0"
+    id "io.freefair.lombok" version "8.4"
+}
+
+def javaVersion = JavaVersion.VERSION_17
+
+java {
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+}
+
+repositories {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "photonvisionLocal"
+                url = uri("libs/photonvision/maven")
+            }
+        }
+        filter {
+            includeGroup("org.photonvision")
+        }
+    }
+}
+
+def ROBOT_MAIN_CLASS = "com.nextinnovation.team8214.Main"
+
+// Define my targets (RoboRIO) and artifacts (deployable files)
+// This is added by GradleRIO's backing project DeployUtils.
+deploy {
+    targets {
+        roborio(getTargetTypeClass('RoboRIO')) {
+            // Team number is loaded either from the .wpilib/wpilib_preferences.json
+            // or from command line. If not found an exception will be thrown.
+            // You can use getTeamOrDefault(team) instead of getTeamNumber if you
+            // want to store a team number in this file.
+            team = project.frc.getTeamNumber()
+            debug = project.frc.getDebugOrDefault(false)
+
+            artifacts {
+                // First part is artifact name, 2nd is artifact type
+                // getTargetTypeClass is a shortcut to get the class type using a string
+
+                frcJava(getArtifactTypeClass('FRCJavaArtifact')) {
+                    jvmArgs.add("-XX:+UnlockExperimentalVMOptions")
+                    jvmArgs.add("-XX:GCTimeRatio=5")
+                    jvmArgs.add("-XX:+UseSerialGC")
+                    jvmArgs.add("-XX:MaxGCPauseMillis=50")
+
+                    // The options below may improve performance, but should only be enabled on the RIO 2
+                    final MAX_JAVA_HEAP_SIZE_MB = 150;
+                    jvmArgs.add("-Xmx" + MAX_JAVA_HEAP_SIZE_MB + "M")
+                    jvmArgs.add("-Xms" + MAX_JAVA_HEAP_SIZE_MB + "M")
+                    jvmArgs.add("-XX:+AlwaysPreTouch")
+                }
+
+                // Static files artifact
+                frcStaticFileDeploy(getArtifactTypeClass('FileTreeArtifact')) {
+                    files = project.fileTree('src/main/deploy')
+                    directory = '/home/lvuser/deploy'
+                    deleteOldFiles = true
+                }
+            }
+        }
+    }
+}
+
+def deployArtifact = deploy.targets.roborio.artifacts.frcJava
+
+// Set to true to use debug for JNI.
+wpi.java.debugJni = false
+
+// Set this to true to enable desktop support.
+def includeDesktopSupport = true
+
+task(replayWatch, type: JavaExec) {
+    group = "AdvantageKit"
+    description = "Watches source changes and reruns AdvantageKit replay without starting the simulator GUI."
+    mainClass = "org.littletonrobotics.junction.ReplayWatch"
+    classpath = sourceSets.main.runtimeClasspath
+    environment "WANT_SIMULATOR_GUI", "false"
+}
+
+// Defining my dependencies. In this case, WPILib (+ friends), and vendor libraries.
+dependencies {
+    annotationProcessor wpi.java.deps.wpilibAnnotations()
+    implementation wpi.java.deps.wpilib()
+    implementation wpi.java.vendor.java()
+
+    roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
+    roborioDebug wpi.java.vendor.jniDebug(wpi.platforms.roborio)
+
+    roborioRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.roborio)
+    roborioRelease wpi.java.vendor.jniRelease(wpi.platforms.roborio)
+
+    nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
+    nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
+    simulationDebug wpi.sim.enableDebug()
+
+    nativeRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.desktop)
+    nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
+    simulationRelease wpi.sim.enableRelease()
+
+    implementation "io.javalin:javalin:6.4.0"
+    implementation "org.slf4j:slf4j-nop:2.0.16"
+
+    def akitJson = new groovy.json.JsonSlurper().parseText(new File(projectDir.getAbsolutePath() + "/vendordeps/AdvantageKit.json").text)
+    annotationProcessor "org.littletonrobotics.akit:akit-autolog:$akitJson.version"
+}
+
+dependencyLocking {
+    lockAllConfigurations()
+}
+
+// Simulation configuration (e.g. environment variables).
+//
+// Normal sim launches are interactive by default. Replay tasks set
+// WANT_SIMULATOR_GUI=false for their nested "simulateJava" process.
+def isReplayOnceRequested = gradle.startParameter.taskNames.any { it == "replayOnce" || it.endsWith(":replayOnce") }
+def isSimulateJavaAgentAutoRequested = gradle.startParameter.taskNames.any { it == "simulateJavaAgentAuto" || it.endsWith(":simulateJavaAgentAuto") }
+def wantSimulatorGui = System.getenv("WANT_SIMULATOR_GUI")
+wpi.sim.addGui().defaultEnabled = wantSimulatorGui == null ? !(isReplayOnceRequested || isSimulateJavaAgentAutoRequested) : wantSimulatorGui.toBoolean()
+wpi.sim.addDriverstation()
+
+// Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
+// in order to make them all available at runtime. Also adding the manifest so WPILib
+// knows where to look for our Robot Class.
+jar {
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    from sourceSets.main.allSource
+    from("LICENSE") {
+        into "META-INF"
+        rename { "TEAM8214-LICENSE-MIT.txt" }
+    }
+    from("THIRD_PARTY_LICENSES/WPILib-BSD-3-Clause.txt") {
+        into "META-INF"
+        rename { "WPILIB-LICENSE-BSD-3-CLAUSE.txt" }
+    }
+    from("THIRD_PARTY_LICENSES/AdvantageKit-BSD-3-Clause.txt") {
+        into "META-INF"
+        rename { "ADVANTAGEKIT-LICENSE-BSD-3-CLAUSE.txt" }
+    }
+    from("THIRD_PARTY_NOTICES.md") {
+        into "META-INF"
+        rename { "TEAM8214-THIRD-PARTY-NOTICES.md" }
+    }
+    manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+// Configure jar and deploy tasks
+deployArtifact.jarTask = jar
+wpi.java.configureExecutableTasks(jar)
+
+// Configure string concat to always inline compile
+tasks.withType(JavaCompile) {
+    options.compilerArgs.add '-XDstringConcat=inline'
+}
+
+// Check robot type when deploying
+task(checkConfigDeploy, dependsOn: "classes", type: JavaExec) {
+    mainClass = "com.nextinnovation.team8214.Config\$CheckDeploy"
+    classpath = sourceSets.main.runtimeClasspath
+}
+deployroborio.dependsOn(checkConfigDeploy)
+tasks.named("deploy").configure {
+    dependsOn(checkConfigDeploy)
+}
+
+// Check robot type when simulating
+task(checkConfigSim, dependsOn: "classes", type: JavaExec) {
+    mainClass = "com.nextinnovation.team8214.Config\$CheckSim"
+    classpath = sourceSets.main.runtimeClasspath
+}
+simulateJava.dependsOn(checkConfigSim)
+tasks.named("simulateExternalJavaRelease").configure {
+    dependsOn(checkConfigSim)
+}
+
+task(checkConfigAgentAuto, dependsOn: "classes", type: JavaExec) {
+    mainClass = "com.nextinnovation.team8214.Config\$CheckAgentAuto"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(simulateJavaAgentAuto) {
+    group = "Simulation"
+    description = "Runs one headless agent auto simulation, writes a WPILOG under log/sim, and exits."
+    dependsOn(simulateJava)
+}
+
+if (isSimulateJavaAgentAutoRequested) {
+    simulateJava.dependsOn(checkConfigAgentAuto)
+    wpi.sim.environment["WANT_AGENT_AUTO"] = "true"
+    wpi.sim.environment["WANT_SIMULATOR_GUI"] = "false"
+    wpi.sim.environment["AGENT_AUTO_NAME"] = (project.findProperty("auto") ?: System.getenv("AGENT_AUTO_NAME") ?: "Silence").toString()
+    wpi.sim.environment["AGENT_AUTO_Q1"] = (project.findProperty("q1") ?: System.getenv("AGENT_AUTO_Q1") ?: "").toString()
+    wpi.sim.environment["AGENT_AUTO_Q2"] = (project.findProperty("q2") ?: System.getenv("AGENT_AUTO_Q2") ?: "").toString()
+    wpi.sim.environment["AGENT_AUTO_TIMEOUT_SEC"] = (project.findProperty("timeout") ?: System.getenv("AGENT_AUTO_TIMEOUT_SEC") ?: "15.0").toString()
+    wpi.sim.environment["AGENT_AUTO_ALLIANCE"] = (project.findProperty("alliance") ?: System.getenv("AGENT_AUTO_ALLIANCE") ?: "blue1").toString()
+}
+
+// Check robot type when replaying logs
+task(checkConfigReplay, dependsOn: "classes", type: JavaExec) {
+    mainClass = "com.nextinnovation.team8214.Config\$CheckReplay"
+    classpath = sourceSets.main.runtimeClasspath
+}
+replayWatch.dependsOn(checkConfigReplay)
+
+task(replayOnceStart) {
+    dependsOn(checkConfigReplay)
+    doLast {
+        println "[AdvantageKit] Starting replay..."
+    }
+}
+
+task(replayOnceFinish) {
+    doLast {
+        def simulateJavaTask = tasks.named("simulateJava").get()
+        if (simulateJavaTask.state.failure == null) {
+            println "[AdvantageKit] Replay finished."
+        } else {
+            println "[AdvantageKit] Replay failed."
+        }
+    }
+}
+
+task(replayOnce) {
+    group = "AdvantageKit"
+    description = "Runs a single AdvantageKit replay without starting the simulator GUI."
+    dependsOn(simulateJava)
+}
+
+if (isReplayOnceRequested) {
+    simulateJava.dependsOn(replayOnceStart)
+    simulateJava.finalizedBy(replayOnceFinish)
+}
+
+def sshOptions = [
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+    "-o",
+    "ConnectTimeout=10"
+]
+def getRoborioAkitLogConfig = {
+    def host = project.findProperty("roborioHost") ?: "roboRIO-${project.frc.getTeamNumber()}-FRC.local"
+    def user = project.findProperty("roborioUser") ?: "lvuser"
+    def remoteDir = project.findProperty("roborioLogDir") ?: "/U/logs"
+    def localDir = layout.projectDirectory.dir(project.findProperty("akitRawLogDir") ?: "log/raw").asFile
+    return [host: host, user: user, remoteDir: remoteDir, localDir: localDir]
+}
+def deleteRoborioAkitLogs = {
+    def config = getRoborioAkitLogConfig()
+    println "[AdvantageKit] Deleting logs from ${config.user}@${config.host}:${config.remoteDir}"
+    exec {
+        executable "ssh"
+        args(*sshOptions, "${config.user}@${config.host}", "find ${config.remoteDir} -maxdepth 1 -type f -name '*.wpilog' -delete")
+    }
+}
+
+task(pullAkitLogs) {
+    group = "AdvantageKit"
+    description = "Copies AdvantageKit WPILOG files from the roboRIO to log/raw."
+    doLast {
+        def config = getRoborioAkitLogConfig()
+        if (!config.localDir.exists() && !config.localDir.mkdirs()) {
+            throw new GradleException("Failed to create local log directory: ${config.localDir}")
+        }
+        println "[AdvantageKit] Pulling logs from ${config.user}@${config.host}:${config.remoteDir} to ${config.localDir}"
+        exec {
+            executable "scp"
+            args(*sshOptions, "-p", "${config.user}@${config.host}:${config.remoteDir}/*.wpilog", config.localDir.absolutePath)
+        }
+    }
+}
+
+task(deleteAkitLogs) {
+    group = "AdvantageKit"
+    description = "Deletes AdvantageKit WPILOG files from the roboRIO log directory."
+    doLast {
+        deleteRoborioAkitLogs()
+    }
+}
+
+task(pullAndDeleteAkitLogs) {
+    group = "AdvantageKit"
+    description = "Copies AdvantageKit WPILOG files from the roboRIO, then deletes the remote copies."
+    dependsOn(pullAkitLogs)
+    doLast {
+        deleteRoborioAkitLogs()
+    }
+}
+
+def getCliArgs = {
+    def argsProperty = project.findProperty("args")
+    if (argsProperty == null) {
+        return []
+    }
+    return org.apache.tools.ant.types.Commandline.translateCommandline(argsProperty.toString()).toList()
+}
+
+task(runListKeys, dependsOn: "classes", type: JavaExec) {
+    group = "AdvantageKit"
+    description = "Lists keys from a WPILOG file."
+    mainClass = "com.nextinnovation.team8214.util.log.ListKeys"
+    classpath = sourceSets.main.runtimeClasspath
+    setArgs(getCliArgs())
+}
+
+task(runLogDumper, dependsOn: "classes", type: JavaExec) {
+    group = "AdvantageKit"
+    description = "Dumps WPILOG data to the console or CSV, with optional statistics."
+    mainClass = "com.nextinnovation.team8214.util.log.LogDumper"
+    classpath = sourceSets.main.runtimeClasspath
+    setArgs(getCliArgs())
+}
+
+// Check release configuration
+task(checkReleaseConfig, dependsOn: "classes", type: JavaExec) {
+    mainClass = "com.nextinnovation.team8214.Config\$CheckReleaseConfig"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+idea {
+    project {
+        // The project.sourceCompatibility setting is not always picked up, so we set explicitly
+        languageLevel = javaVersion
+    }
+    module {
+        // Improve development & (especially) debugging experience (and IDEA's capabilities) by having libraries' source & javadoc attached
+        downloadJavadoc = true
+        downloadSources = true
+        // Exclude the following from indexing and search
+        excludeDirs += file(".run")
+        excludeDirs += file(".vscode")
+    }
+}
+
+// Create version file
+project.compileJava.dependsOn(createVersionFile)
+gversion {
+    srcDir = "src/main/java/"
+    classPackage = "com.nextinnovation.team8214"
+    className = "BuildConstants"
+    dateFormat = "yyyy-MM-dd HH:mm:ss z"
+    timeZone = "America/New_York"
+    indent = "  "
+}
+
+// Create commit with working changes on event branches
+task(eventDeploy) {
+    doLast {
+        def branchOutput = new ByteArrayOutputStream()
+        exec {
+            workingDir(projectDir)
+            executable 'git'
+            args 'branch', '--show-current'
+            standardOutput = branchOutput
+        }
+        def branch = branchOutput.toString().trim()
+
+        if (branch.startsWith("event/")) {
+            exec {
+                workingDir(projectDir)
+                executable 'git'
+                args 'add', '-A'
+            }
+
+            def stagedDiff = exec {
+                workingDir(projectDir)
+                executable 'git'
+                args 'diff', '--cached', '--quiet'
+                ignoreExitValue = true
+            }
+            if (stagedDiff.exitValue == 0) {
+                println "No changes to commit on event branch: '$branch'"
+                return
+            }
+
+            def commitMessage = "Update at '${new Date().toString()}'"
+            exec {
+                workingDir(projectDir)
+                executable 'git'
+                args 'commit', '-m', commitMessage
+            }
+
+            println "Committed to branch: '$branch'"
+            println "Commit message: '$commitMessage'"
+        } else {
+            println "Not on an event branch, skipping commit"
+        }
+    }
+}
+tasks.matching({ it.name.toLowerCase().startsWith("deploy") }).configureEach {
+    dependsOn(eventDeploy)
+}
+eventDeploy.dependsOn(spotlessApply)
+createVersionFile.mustRunAfter(eventDeploy)
+
+// Spotless formatting
+project.compileJava.dependsOn(spotlessApply)
+
+def teamMitHeader = '''// Copyright (c) 2026 FRC Team 8214 contributors
+// SPDX-License-Identifier: MIT
+
+'''
+
+spotless {
+    java {
+        target fileTree(".") {
+            include "src/**/*.java"
+            exclude "**/build/**", "**/build-*/**",
+                    "src/main/java/com/nextinnovation/team8214/BuildConstants.java"
+        }
+        toggleOffOn()
+        googleJavaFormat()
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        endWithNewline()
+        licenseHeader(teamMitHeader)
+                .onlyIfContentMatches("\\A(?:package |// Copyright \\(c\\) 2026 FRC Team 8214 contributors)")
+    }
+    groovyGradle {
+        target fileTree(".") {
+            include "**/*.gradle"
+            exclude "**/build/**", "**/build-*/**"
+        }
+        greclipse()
+        indentWithSpaces(4)
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+    json {
+        target fileTree(".") {
+            include "**/*.json"
+            exclude "**/build/**", "**/build-*/**", ".elastic"
+        }
+        gson().indentWithSpaces(2)
+    }
+    format "misc", {
+        target fileTree(".") {
+            include "**/*.md", "**/.gitignore"
+            exclude "**/build/**", "**/build-*/**", "**/deploy/**", ".elastic"
+        }
+        trimTrailingWhitespace()
+        indentWithSpaces(2)
+        endWithNewline()
+    }
+}

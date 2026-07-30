@@ -1,0 +1,696 @@
+{
+  "hubs": [
+    {
+      "x": -7,
+      "y": -7,
+      "width": 1477,
+      "height": 881,
+      "state": {
+        "sidebar": {
+          "width": 362,
+          "expanded": [
+            "/DriverStation/Joystick0/POVs",
+            "/DriverStation/Joystick0/AxisValues",
+            "/Swerve/Gyro/YawPosition",
+            "/AmpArm/Roller",
+            "/RealOutputs/ApriltagVision/AllGoodRobotInField/0",
+            "/RealOutputs/ApriltagVision/AllGoodRobotInField/0/rotation",
+            "/RealOutputs/ApriltagVision/AllGoodRobotInField/0/rotation/q",
+            "/RealOutputs/Odometry/EstimatedPose/rotation",
+            "/RealOutputs/Odometry/EstimatedPose/translation",
+            "/RealOutputs/Odometry/WheeledPose/rotation",
+            "/RealOutputs/Odometry/WheeledPose/translation",
+            "/Swerve/Odometry/OdometryBLPositions/0",
+            "/Swerve/Odometry/OdometryBLPositions/0/angle",
+            "/DashboardInputs/TunableNumbers/ApriltagVision/BackLeft/PoseInRobot",
+            "/DashboardInputs/TunableNumbers/ApriltagVision/BackMid",
+            "/DashboardInputs/TunableNumbers",
+            "/RealOutputs/ApriltagVision/AllUsedTagInField/0/rotation",
+            "/RealOutputs/ApriltagVision/AllUsedTagInField/1",
+            "/RealOutputs/ApriltagVision/AllUsedTagInField/1/rotation",
+            "/ApriltagVision/BackLeft/ApriltagIdsUsed",
+            "/ApriltagVision/BackLeft/TargetPitchInCamera",
+            "/ApriltagVision/BackLeft/TargetYawInCamera",
+            "/RealOutputs/GamePieces/AllLivedNotes/0/rotation",
+            "/RealOutputs/GamePieces/AllLivedNotes/1/rotation",
+            "/RealOutputs/GamePieces/AllLivedNotes/1/translation",
+            "/RealOutputs/GamePieces/AllLivedNotes/0/translation",
+            "/RealOutputs/GamePieces/AllLivedNotes",
+            "/ObjectDetectionVision/FrontMid",
+            "/ObjectDetectionVision/FrontMid/TargetPitchInCamera",
+            "/ObjectDetectionVision/FrontMid/TargetPitchInCamera/0",
+            "/ObjectDetectionVision/FrontMid/TargetPitchInCamera/1",
+            "/ObjectDetectionVision/FrontMid/TargetPitchInCamera/2",
+            "/ObjectDetectionVision/FrontMid/TargetPitchInCamera/3",
+            "/ObjectDetectionVision/FrontMid/TargetYawInCamera/0",
+            "/RealOutputs/Swerve/SwerveStates/GoalModuleStates/3",
+            "/RealOutputs/Odometry/EstimatedPose",
+            "/RealOutputs/ShootingPlanner",
+            "/RealOutputs/ShootingPlanner/OrgRobotFlywheelVel",
+            "/Feeder/Pitch",
+            "/Feeder/Roller",
+            "/RealOutputs/magic dynamic translation 3d?",
+            "/RealOutputs/CompensatedShootingDirection/q",
+            "/NetworkInputs/SmartDashboard/Auto",
+            "/NetworkInputs/TunableNumbers",
+            "/NetworkInputs/TunableNumbers/Intake",
+            "/NetworkInputs/TunableNumbers/Intake/Align",
+            "/NetworkInputs/TunableNumbers/Intake/Align/Goal",
+            "/NetworkInputs/TunableNumbers/Intake/Roller",
+            "/NetworkInputs/TunableNumbers/Intake/Roller/Goal",
+            "/NetworkInputs/Tuning",
+            "/NetworkInputs/Tuning/Intake",
+            "/NetworkInputs/Tuning/Intake/Align",
+            "/NetworkInputs/Tuning/Intake/Align/Goal",
+            "/NetworkInputs/Tuning/KsCharacterization",
+            "/Tuning/Intake",
+            "/Tuning/Intake/Align",
+            "/Tuning/Intake/Align/Goal",
+            "/AdvantageKit/ObjectDetectionVision/FrontMid",
+            "/AdvantageKit/ObjectDetectionVision/FrontMid/Yaw",
+            "/AdvantageKit/ObjectDetectionVision/FrontMid/Pitch",
+            "/AdvantageKit/ApriltagVision/BackMid",
+            "/AdvantageKit/ApriltagVision/BackMid/Ids",
+            "/AdvantageKit/ApriltagVision/BackLeft/PoseObservations",
+            "/AdvantageKit/ApriltagVision/BackLeft/PoseObservations/0",
+            "/AdvantageKit/ObjectDetectionVision/FrontMid/Timestamp",
+            "/AdvantageKit/RealOutputs/GamePieceTracker/AllAlgae",
+            "/AdvantageKit/RealOutputs/Mechanism/Swerve",
+            "/AdvantageKit/RealOutputs/Mechanism/Swerve/Module_0",
+            "/AdvantageKit/RealOutputs/Mechanism/Module_0",
+            "/AdvantageKit/RealOutputs/ZeroedComponentPoses/0",
+            "/AdvantageKit/RealOutputs/Swerve/ModuleStates/0",
+            "/AdvantageKit/RealOutputs/Odometry/WheeledPose",
+            "/AdvantageKit/RealOutputs/Odometry/EstimatedPose",
+            "/AdvantageKit/RealOutputs/Visualize/Component/0",
+            "/AdvantageKit/RealOutputs/Visualize/Component/0/rotation",
+            "/AdvantageKit/RealOutputs/Visualize/Component/0/translation",
+            "/AdvantageKit/RealOutputs/Visualize/Component/0/rotation/q",
+            "/Tuning/Arm/Elbow/Goal",
+            "/AdvantageKit/RealOutputs/Visualize/Component/5",
+            "/AdvantageKit/RealOutputs/Visualize/Component/5/translation",
+            "/AdvantageKit/RealOutputs/Visualize/Component/4",
+            "/AdvantageKit/RealOutputs/Visualize/Component/4/translation",
+            "/AdvantageKit/RealOutputs/Visualize/Component/6",
+            "/AdvantageKit/RealOutputs/Visualize/Component/6/translation",
+            "/AdvantageKit/RealOutputs/Visualize/Component/6/rotation",
+            "/AdvantageKit/RealOutputs/Visualize/Component/6/rotation/q",
+            "/AdvantageKit/RealOutputs/Visualize/Component/5/rotation",
+            "/AdvantageKit/RealOutputs/Visualize/Component/5/rotation/q",
+            "/AdvantageKit/RealOutputs/Visualize/Component/4/rotation",
+            "/AdvantageKit/RealOutputs/Visualize/Component/4/rotation/q",
+            "/AdvantageKit/RealOutputs/Visualize/TFtree",
+            "/AdvantageKit/RealOutputs/Visualize/Debug",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/5",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/5/TF",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/5/deltaTF",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/5/deltaTF/rotation",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/5/deltaTF/rotation/q",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/5/parentTF",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/5/TF/rotation",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/5/parentTF/rotation",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/5/parentTF/rotation/q",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/5/TF/rotation/q",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/6",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/6/parentTF",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/6/parentTF/rotation",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/6/parentTF/rotation/q",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/6/TF",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/6/TF/rotation",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/6/TF/rotation/q",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/6/deltaTF",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/6/deltaTF/rotation",
+            "/AdvantageKit/RealOutputs/Visualize/Debug/6/deltaTF/rotation/q",
+            "/AdvantageKit/Arm Elevator",
+            "/AdvantageKit/RealOutputs/Swerve/TeleopController/HeadingMaintainer",
+            "/AdvantageKit/RealOutputs/Swerve/LaserController",
+            "/AdvantageKit/AlgaeGroundIntake/Arm",
+            "/AdvantageKit/Swerve/Gyro",
+            "/AdvantageKit/Swerve/Gyro/YawPosition",
+            "/AdvantageKit/RealOutputs/Arm/Shoulder",
+            "/AdvantageKit/RealOutputs/AlgaeGroundIntake",
+            "/AdvantageKit/RealOutputs/CoralEndEffector",
+            "/Tuning/CoralEndEffector/Goal",
+            "/Tuning/Swerve/LaserController",
+            "/Tuning/Odometry/TxTyObservation",
+            "/Tuning/CoralEndEffector",
+            "/RealOutputs/Visualize",
+            "/RealOutputs/Swerve/SwerveStates",
+            "/RealOutputs/Swerve/LaserController",
+            "/RealOutputs/Swerve",
+            "/AdvantageKit/RealOutputs/GamePieceTracker/BestCoral",
+            "/AdvantageKit/RealOutputs/GamePieceTracker/SearchAreaCoral",
+            "/AdvantageKit/RealOutputs/Visualize",
+            "/AdvantageKit/RealOutputs/Visualizer",
+            "/AdvantageKit/GroundIntake/Door",
+            "/AdvantageKit/GroundIntake/Arm",
+            "/AdvantageKit/RealOutputs/ObjectDetectionVision",
+            "/AdvantageKit/RealOutputs/Performance/VirtualSubsystem",
+            "/AdvantageKit/RealOutputs/Performance/RobotContainer",
+            "/AdvantageKit/RealOutputs/Performance/GamePieceVisualizers",
+            "/AdvantageKit/RealOutputs/Performance/ObjectDetectionVision",
+            "/AdvantageKit/RealOutputs/Performance/ApriltagVision",
+            "/AdvantageKit/RealOutputs/Performance/ApriltagVision/Cameras",
+            "/AdvantageKit/RealOutputs/Performance/ApriltagVision/Camera",
+            "/AdvantageKit/RealOutputs/Performance/ApriltagVision/Camera/VisionSystemSim",
+            "/Tuning/EndEffector",
+            "/Tuning/EndEffector/Goal",
+            "/AdvantageKit/RealOutputs/ArmShoulder",
+            "/Tuning/Arm/Elbow",
+            "/Tuning/Arm/Shoulder/Goal",
+            "/Tuning/GroundIntake/Roller",
+            "/Tuning/GroundIntake/Roller/Goal",
+            "/AdvantageKit/Indexer/Roller",
+            "/Tuning/Indexer/Goal",
+            "/Tuning/GroundIntake",
+            "/Tuning/Arm",
+            "/Tuning/AutoCommands",
+            "/Tuning/Swerve/CoralPounceController",
+            "/Tuning/Swerve/CageAlignController",
+            "/AdvantageKit/RealOutputs/Swerve/NetAlignController",
+            "/AdvantageKit/RealOutputs/Odometry",
+            "/Tuning/GroundIntake/Door",
+            "/Tuning/Indexer",
+            "/AdvantageKit/EndEffector",
+            "/AdvantageKit/GroundIntake",
+            "/AdvantageKit/Climber",
+            "/Tuning/Climber",
+            "/Tuning/Arm/Shoulder",
+            "/RealOutputs/Indexer",
+            "/Indexer",
+            "/Indexer/Roller",
+            "/RollerSensor",
+            "/RealOutputs/Arm",
+            "/RealOutputs/EndEffector",
+            "/Shuffleboard/.metadata",
+            "/Shuffleboard/.recording",
+            "/Swerve",
+            "/Swerve/Gyro",
+            "/Arm Elbow",
+            "/AdvantageKit/RealOutputs/SAP",
+            "/Tuning/Swerve",
+            "/AdvantageKit/RealOutputs/Swerve/CoralPounceController",
+            "/AdvantageKit/RealOutputs/Swerve/ReefAlignController",
+            "/AdvantageKit/RealOutputs/Odometry/EstimatedPose/translation",
+            "/AdvantageKit/RealOutputs/Swerve/RawGoalVel",
+            "/AdvantageKit/RealOutputs/Swerve/CollectCopilot",
+            "/AdvantageKit/RealOutputs/Swerve/TrajectoryController",
+            "/Tuning/Swerve/Module",
+            "/AdvantageKit/RealOutputs/odometry/estimatedPose",
+            "/AdvantageKit/RealOutputs/Swerve/SwerveStates",
+            "/Tuning/Swerve/TeleopController/HeadingMaintainer",
+            "/AdvantageKit/RealOutputs/shooter/targetState",
+            "/AdvantageKit/RealOutputs/controller",
+            "/AdvantageKit/RealOutputs/controller/scoreController",
+            "/Tuning/subsystem/shooter/controller",
+            "/Tuning/subsystem/shooter/controller/scoreController/aimTableEntryC",
+            "/Tuning/subsystem/shooter/controller/scoreController/aimTableEntryD",
+            "/Tuning/subsystem/shooter/controller/scoreController/aimTableEntryA",
+            "/Tuning/subsystem/shooter/controller/scoreController/aimTableEntryB",
+            "/AdvantageKit/RealOutputs/subsystem/shooter/controller",
+            "/AdvantageKit/RealOutputs/subsystem/shooter/controller/scoreController",
+            "/Tuning/subsystem/shooter/controller/scoreController/aimTableEntryE",
+            "/Tuning/subsystem/shooter/controller/scoreController/aimTableEntryF",
+            "/Tuning/subsystem/shooter/controller/transportController/aimTableEntryA",
+            "/Tuning/subsystem/shooter/controller/transportController/aimTableEntryB",
+            "/Tuning/subsystem/shooter/controller/transportController/aimTableEntryC",
+            "/Tuning/subsystem/shooter/controller/transportController/aimTableEntryD",
+            "/AdvantageKit/RealOutputs/odometry/fieldCentricVel",
+            "/AdvantageKit/RealOutputs/Shooter",
+            "/AdvantageKit/RealOutputs/Swerve",
+            "/AdvantageKit/RealOutputs/Swerve/TeleopController",
+            "/AdvantageKit/NetworkInputs/SmartDashboard",
+            "/AdvantageKit/NetworkInputs/SmartDashboard/Auto",
+            "/AdvantageKit/apriltagVision",
+            "/AdvantageKit/RealOutputs/subsystem",
+            "/Tuning/subsystem/swerve",
+            "/Tuning/subsystem/swerve/antiMiss",
+            "/Tuning/subsystem/swerve/antiMiss/score",
+            "/Tuning/subsystem/swerve/antiMiss/transport",
+            "/AdvantageKit/RealOutputs",
+            "/AdvantageKit/subsystem/shooter/pitch",
+            "/AdvantageKit/RealOutputs/subsystem/apriltagVision",
+            "/AdvantageKit/RealOutputs/sim",
+            "/SmartDashboard/MapleSim",
+            "/SmartDashboard/MapleSim/MatchData",
+            "/SmartDashboard/MapleSim/MatchData/Breakdown",
+            "/SmartDashboard/MapleSim/MatchData/Breakdown/Red Alliance",
+            "/SmartDashboard/BatterySim",
+            "/AdvantageKit/subsystem/intake/roller",
+            "/AdvantageKit/subsystem/indexer/funnel",
+            "/AdvantageKit/subsystem/indexer/trigger",
+            "/AdvantageKit/subsystem/shooter/flywheel",
+            "/AdvantageKit/RealOutputs/subsystem/intake",
+            "/Tuning/subsystem/intake/motionMagic",
+            "/Tuning/subsystem/intake/down/motionMagic",
+            "/Tuning/subsystem/intake/goal/collect",
+            "/Tuning/subsystem/intake/up",
+            "/Tuning/subsystem/intake/up/motionMagic",
+            "/AdvantageKit/subsystem",
+            "/AdvantageKit/subsystem/intake",
+            "/AdvantageKit/subsystem/intake/arm",
+            "/Tuning/subsystem/intake/goal/eject",
+            "/Tuning/subsystem/intake/goal/score",
+            "/Tuning/subsystem/intake/goal/transport",
+            "/Tuning/subsystem/indexer/goal",
+            "/Tuning/subsystem/indexer/goal/collect",
+            "/Tuning/subsystem/indexer/goal/eject",
+            "/Tuning/subsystem/indexer/goal/idle",
+            "/Tuning/subsystem/indexer",
+            "/Tuning/subsystem",
+            "/Tuning/subsystem/shooter/pitch",
+            "/Tuning/subsystem/shooter/pitch/gains",
+            "/AdvantageKit/RealOutputs/subsystem/shooter",
+            "/AdvantageKit/subsystem/shooter",
+            "/Tuning/subsystem/shooter/flywheel",
+            "/Tuning/subsystem/shooter/flywheel/gains",
+            "/AdvantageKit/RealOutputs/subsystem/shooter/targetState",
+            "/Tuning/subsystem/shooter/controller/fenceController",
+            "/AdvantageKit/subsystem/indexer",
+            "/Tuning/subsystem/indexer/goal/score",
+            "/Tuning/subsystem/intake",
+            "/Tuning/subsystem/intake/goal/idle",
+            "/Tuning/liveDebugGroupChooser",
+            "/Tuning/subsystem/indexer/trigger",
+            "/Tuning/subsystem/indexer/trigger/gains",
+            "/Tuning/subsystem/apriltagVision",
+            "/Tuning/subsystem/apriltagVision/frontLeft",
+            "/AdvantageKit/RealOutputs/subsystem/visualizer",
+            "/Tuning/subsystem/apriltagVision/frontRight",
+            "/AdvantageKit/RealOutputs/subsystem/apriltagVision/allBadRobotInField",
+            "/AdvantageKit/RealOutputs/subsystem/apriltagVision/allBadRobotInField/0",
+            "/AdvantageKit/RealOutputs/subsystem/apriltagVision/allBadRobotInField/1",
+            "/AdvantageKit/subsystem/apriltagVision",
+            "/Tuning/subsystem/swerve/trenchController",
+            "/Tuning/subsystem/swerve/trenchController/yController",
+            "/AdvantageKit/RealOutputs/subsystem/swerve",
+            "/AdvantageKit/RealOutputs/subsystem/swerve/trajectoryController",
+            "/Tuning/subsystem/swerve/module",
+            "/AdvantageKit/subsystem/swerve",
+            "/AdvantageKit/subsystem/swerve/moduleBL",
+            "/AdvantageKit/subsystem/swerve/moduleBR",
+            "/AdvantageKit/subsystem/swerve/moduleFL",
+            "/AdvantageKit/subsystem/swerve/moduleFR",
+            "/Tuning/subsystem/apriltagVision/front",
+            "/Tuning/subsystem/apriltagVision/back",
+            "/Tuning/subsystem/apriltagVision/left",
+            "/Tuning/subsystem/apriltagVision/right",
+            "/Tuning/subsystem/intake/goal/shake",
+            "/AdvantageKit/subsystem/climber",
+            "/Tuning/subsystem/intake/roller",
+            "/Tuning/subsystem/intake/roller/gains",
+            "/Tuning/subsystem/shooter",
+            "/RealOutputs/subsystem",
+            "/RealOutputs/subsystem/swerve",
+            "/ReplayOutputs/subsystem",
+            "/ReplayOutputs/subsystem/swerve",
+            "/ReplayOutputs/odometry",
+            "/ReplayOutputs/odometry/estimatedPose",
+            "/RealOutputs/odometry",
+            "/RealOutputs/subsystem/apriltagVision",
+            "/RealOutputs/subsystem/visualizer",
+            "/ReplayOutputs/subsystem/swerve/trajectoryController",
+            "/RealOutputs/subsystem/swerve/trajectoryController",
+            "/AdvantageKit",
+            "/AdvantageKit/RealOutputs/sim/robotPose3d",
+            "/AdvantageKit/RealOutputs/odometry",
+            "/AdvantageKit/RealOutputs/odometry/simPose"
+          ]
+        },
+        "tabs": {
+          "selected": 2,
+          "tabs": [
+            {
+              "type": 0,
+              "title": "",
+              "controller": null,
+              "controllerUUID": "12f9dcah8q681upfwoozm23czhplfwbx",
+              "renderer": "",
+              "controlsHeight": 0
+            },
+            {
+              "type": 9,
+              "title": "Swerve",
+              "controller": {
+                "sources": [
+                  {
+                    "type": "states",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/swerve/moduleStates",
+                    "logType": "SwerveModuleState[]",
+                    "visible": true,
+                    "options": {
+                      "color": "#ff8c00",
+                      "arrangement": "0,3,1,2"
+                    }
+                  },
+                  {
+                    "type": "chassisSpeeds",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/swerve/rawGoalVel",
+                    "logType": "ChassisSpeeds",
+                    "visible": true,
+                    "options": {
+                      "color": "#0000ff"
+                    }
+                  },
+                  {
+                    "type": "rotation",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/odometry/estimatedPose/rotation",
+                    "logType": "Rotation2d",
+                    "visible": true,
+                    "options": {}
+                  },
+                  {
+                    "type": "states",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/swerve/optimizedGoalModuleStates",
+                    "logType": "SwerveModuleState[]",
+                    "visible": true,
+                    "options": {
+                      "color": "#00ff00",
+                      "arrangement": "0,3,1,2"
+                    }
+                  },
+                  {
+                    "type": "states",
+                    "logKey": "/RealOutputs/subsystem/swerve/moduleStates",
+                    "logType": "SwerveModuleState[]",
+                    "visible": true,
+                    "options": {
+                      "color": "#ff8c00",
+                      "arrangement": "0,3,1,2"
+                    }
+                  },
+                  {
+                    "type": "chassisSpeeds",
+                    "logKey": "/ReplayOutputs/subsystem/swerve/rawGoalVel",
+                    "logType": "ChassisSpeeds",
+                    "visible": true,
+                    "options": {
+                      "color": "#0000ff"
+                    }
+                  },
+                  {
+                    "type": "rotation",
+                    "logKey": "/ReplayOutputs/odometry/estimatedPose/rotation",
+                    "logType": "Rotation2d",
+                    "visible": true,
+                    "options": {}
+                  },
+                  {
+                    "type": "states",
+                    "logKey": "/RealOutputs/subsystem/swerve/optimizedGoalModuleStates",
+                    "logType": "SwerveModuleState[]",
+                    "visible": true,
+                    "options": {
+                      "color": "#00ff00",
+                      "arrangement": "0,1,2,3"
+                    }
+                  }
+                ],
+                "maxSpeed": 5,
+                "sizeX": 0.65,
+                "sizeY": 0.65,
+                "orientation": 1
+              },
+              "controllerUUID": "tntg4p3ouxf57qpivphhpvzlt618xuwh",
+              "renderer": null,
+              "controlsHeight": 281
+            },
+            {
+              "type": 3,
+              "title": "3D Field",
+              "controller": {
+                "sources": [
+                  {
+                    "type": "gamePiece",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/sim/fuelPoses",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {
+                      "variant": "Fuel"
+                    }
+                  },
+                  {
+                    "type": "robot",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/sim/robotPose3d",
+                    "logType": "Pose3d",
+                    "visible": true,
+                    "options": {
+                      "model": "NI OFFSEASON 2026"
+                    }
+                  },
+                  {
+                    "type": "vision",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/apriltagVision/allUsedTagInField",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {
+                      "color": "#00ff00",
+                      "size": "normal"
+                    }
+                  },
+                  {
+                    "type": "component",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/visualizer/components",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {}
+                  },
+                  {
+                    "type": "robot",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/odometry/estimatedPose",
+                    "logType": "Pose2d",
+                    "visible": false,
+                    "options": {
+                      "model": "NI OFFSEASON 2026"
+                    }
+                  },
+                  {
+                    "type": "component",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/visualizer/components",
+                    "logType": "Pose3d[]",
+                    "visible": false,
+                    "options": {}
+                  },
+                  {
+                    "type": "vision",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/apriltagVision/allUsedTagInField",
+                    "logType": "Pose3d[]",
+                    "visible": false,
+                    "options": {
+                      "color": "#00ff00",
+                      "size": "normal"
+                    }
+                  },
+                  {
+                    "type": "trajectory",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/Swerve/TrajectoryController/TrajectoryPoses",
+                    "logType": "Pose2d[]",
+                    "visible": true,
+                    "options": {
+                      "color": "#ffff00",
+                      "size": "normal"
+                    }
+                  },
+                  {
+                    "type": "ghost",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/apriltagVision/allGoodRobotInField",
+                    "logType": "Pose3d[]",
+                    "visible": false,
+                    "options": {
+                      "model": "NI OFFSEASON 2026",
+                      "color": "#00ff00"
+                    }
+                  },
+                  {
+                    "type": "component",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/visualizer/components",
+                    "logType": "Pose3d[]",
+                    "visible": false,
+                    "options": {}
+                  },
+                  {
+                    "type": "ghost",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/apriltagVision/allBadRobotInField",
+                    "logType": "Pose3d[]",
+                    "visible": false,
+                    "options": {
+                      "model": "NI OFFSEASON 2026",
+                      "color": "#ff0000"
+                    }
+                  },
+                  {
+                    "type": "component",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/visualizer/components",
+                    "logType": "Pose3d[]",
+                    "visible": false,
+                    "options": {}
+                  },
+                  {
+                    "type": "robot",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/swerve/trajectoryController/setpointPose",
+                    "logType": "Pose2d",
+                    "visible": true,
+                    "options": {
+                      "model": "Crab Bot"
+                    }
+                  },
+                  {
+                    "type": "robot",
+                    "logKey": "/RealOutputs/odometry/estimatedPose",
+                    "logType": "Pose2d",
+                    "visible": true,
+                    "options": {
+                      "model": "NI OFFSEASON 2026"
+                    }
+                  },
+                  {
+                    "type": "vision",
+                    "logKey": "/RealOutputs/subsystem/apriltagVision/allUsedTagInField",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {
+                      "color": "#00ff00",
+                      "size": "normal"
+                    }
+                  },
+                  {
+                    "type": "component",
+                    "logKey": "/RealOutputs/subsystem/visualizer/components",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {}
+                  },
+                  {
+                    "type": "trajectory",
+                    "logKey": "/RealOutputs/subsystem/swerve/trajectoryController/trajectoryPoses",
+                    "logType": "Pose2d[]",
+                    "visible": true,
+                    "options": {
+                      "color": "#ffff00",
+                      "size": "normal"
+                    }
+                  },
+                  {
+                    "type": "ghost",
+                    "logKey": "/RealOutputs/subsystem/apriltagVision/allGoodRobotInField",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {
+                      "model": "NI OFFSEASON 2026",
+                      "color": "#00ff00"
+                    }
+                  },
+                  {
+                    "type": "component",
+                    "logKey": "/RealOutputs/subsystem/visualizer/components",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {}
+                  },
+                  {
+                    "type": "ghost",
+                    "logKey": "/RealOutputs/subsystem/apriltagVision/allBadRobotInField",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {
+                      "model": "NI OFFSEASON 2026",
+                      "color": "#ff0000"
+                    }
+                  },
+                  {
+                    "type": "component",
+                    "logKey": "/RealOutputs/subsystem/visualizer/components",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {}
+                  },
+                  {
+                    "type": "robot",
+                    "logKey": "/RealOutputs/subsystem/swerve/trajectoryController/setpointPose",
+                    "logType": "Pose2d",
+                    "visible": true,
+                    "options": {
+                      "model": "Crab Bot"
+                    }
+                  }
+                ],
+                "game": "FRC:2026 Field"
+              },
+              "controllerUUID": "7m08vszzgvh0hhbfifosh2rixtig3z2n",
+              "renderer": {
+                "cameraIndex": -1,
+                "orbitFov": 50,
+                "cameraPosition": [
+                  -9.98249068686271,
+                  7.435045303932996,
+                  1.6257576816394914
+                ],
+                "cameraTarget": [
+                  -0.5475340446142497,
+                  -2.0412617969739673,
+                  -0.6629644822634322
+                ]
+              },
+              "controlsHeight": 289
+            },
+            {
+              "type": 1,
+              "title": "Line Graph",
+              "controller": {
+                "leftSources": [
+                  {
+                    "type": "stepped",
+                    "logKey": "NT:/AdvantageKit/subsystem/intake/roller/VelRadPerSec",
+                    "logType": "Number",
+                    "visible": true,
+                    "options": {
+                      "color": "#e5b31b",
+                      "size": "normal"
+                    }
+                  }
+                ],
+                "rightSources": [],
+                "discreteSources": [
+                  {
+                    "type": "stripes",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/subsystem/swerve/controlMode",
+                    "logType": "String",
+                    "visible": true,
+                    "options": {
+                      "color": "#2b66a2"
+                    }
+                  }
+                ],
+                "leftLockedRange": null,
+                "rightLockedRange": null,
+                "leftUnitConversion": {
+                  "autoTarget": null,
+                  "preset": null
+                },
+                "rightUnitConversion": {
+                  "autoTarget": null,
+                  "preset": null
+                },
+                "leftFilter": 0,
+                "rightFilter": 0
+              },
+              "controllerUUID": "3w6iogxdmbmjuhqpw2s0tcuqdo1pdom4",
+              "renderer": null,
+              "controlsHeight": 200
+            },
+            {
+              "type": 12,
+              "title": "Metadata",
+              "controller": null,
+              "controllerUUID": "aauzc69tkf499sdxxl8439r4gv9mhilm",
+              "renderer": null,
+              "controlsHeight": 0
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "satellites": [],
+  "version": "26.0.0"
+}

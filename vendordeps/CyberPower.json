@@ -1,0 +1,20 @@
+{
+  "fileName": "CyberPower.json",
+  "name": "Cyber Power",
+  "version": "2026.2.2",
+  "uuid": "82ed958d-ee21-437a-90e5-dfa702a2de63",
+  "frcYear": "2026",
+  "mavenUrls": [
+    "https://power.team8214.com/vendordep/maven"
+  ],
+  "jsonUrl": "https://power.team8214.com/vendordep/CyberPower.json",
+  "javaDependencies": [
+    {
+      "groupId": "com.nextinnovation.cyberpower",
+      "artifactId": "cyberpower-java",
+      "version": "2026.2.2"
+    }
+  ],
+  "jniDependencies": [],
+  "cppDependencies": []
+}

@@ -1,0 +1,137 @@
+{
+  "name": "NI OFFSEASON 2026",
+  "rotations": [],
+  "position": [
+    0,
+    0,
+    0
+  ],
+  "cameras": [
+    {
+      "name": "BackLeft",
+      "rotations": [
+        {
+          "axis": "z",
+          "degrees": 158.25
+        },
+        {
+          "axis": "y",
+          "degrees": 32.5
+        }
+      ],
+      "position": [
+        -0.104215,
+        0.3005405,
+        0.5083365
+      ],
+      "resolution": [
+        1280,
+        800
+      ],
+      "fov": 70.0
+    },
+    {
+      "name": "BackRight",
+      "rotations": [
+        {
+          "axis": "z",
+          "degrees": 201.75
+        },
+        {
+          "axis": "y",
+          "degrees": 32.5
+        }
+      ],
+      "position": [
+        -0.104215,
+        -0.3005405,
+        0.5083365
+      ],
+      "resolution": [
+        1280,
+        800
+      ],
+      "fov": 70.0
+    },
+    {
+      "name": "BackMid",
+      "rotations": [
+        {
+          "axis": "z",
+          "degrees": 180.0
+        },
+        {
+          "axis": "y",
+          "degrees": 30.0
+        }
+      ],
+      "position": [
+        -0.183936,
+        0.0,
+        0.192638
+      ],
+      "resolution": [
+        1280,
+        800
+      ],
+      "fov": 70.0
+    },
+    {
+      "name": "FrontMid",
+      "rotations": [
+        {
+          "axis": "z",
+          "degrees": 0.0
+        },
+        {
+          "axis": "y",
+          "degrees": -24.328
+        }
+      ],
+      "position": [
+        0.41,
+        0.0,
+        0.29
+      ],
+      "resolution": [
+        1280,
+        800
+      ],
+      "fov": 70.0
+    }
+  ],
+  "components": [
+    {
+      "zeroedRotations": {},
+      "zeroedPosition": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "zeroedRotations": {},
+      "zeroedPosition": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "zeroedRotations": {},
+      "zeroedPosition": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "zeroedRotations": {},
+      "zeroedPosition": [
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooting Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="controls">
+                <div class="connection-status">
+                    <span id="connection-indicator" class="disconnected">●</span>
+                    <span id="connection-text">未连接</span>
+                </div>
+                <div class="table-selector">
+                    <label for="tableType">插值表:</label>
+                    <select id="tableType" class="table-select">
+                        <option value="SCORE">Score (进球)</option>
+                        <option value="TRANSPORT">Transport (传送)</option>
+                    </select>
+                </div>
+                <button id="undo" class="btn-history" disabled>↶ 撤销</button>
+                <button id="redo" class="btn-history" disabled>↷ 重做</button>
+                <button id="applyChanges" class="btn-apply">⬆️ 应用修改到机器人</button>
+                <button id="copyJson" class="btn-copy">📋 复制 JSON</button>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-bar-header">
+                <div class="status-item">
+                    <span class="status-label">机器人当前表:</span>
+                    <span id="robotTableName" class="status-value">--</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">当前距离:</span>
+                    <span id="statusDistance" class="status-value">--</span> m
+                </div>
+            </div>
+
+            <div class="shooters-container">
+                <!-- Target values row -->
+                <div class="shooter-row target-row">
+                    <div class="row-label">目标值</div>
+                    <div class="status-item-compact">
+                        <span class="status-label">X速度:</span>
+                        <span id="statusXVel" class="status-value">--</span> m/s
+                    </div>
+                    <div class="status-item-compact">
+                        <span class="status-label">Y速度:</span>
+                        <span id="statusYVel" class="status-value">--</span> m/s
+                    </div>
+                    <div class="status-item-compact">
+                        <span class="status-label">角度:</span>
+                        <span id="statusAngle" class="status-value">--</span>°
+                    </div>
+                    <div class="status-item-compact">
+                        <span class="status-label">合速度:</span>
+                        <span id="statusTotal" class="status-value">--</span> m/s
+                    </div>
+                </div>
+
+                <!-- Main row -->
+                <div class="shooter-row">
+                    <div class="row-label">Main</div>
+                    <div class="status-item-compact">
+                        <span class="status-label">X速度:</span>
+                        <span id="statusCurrentXVel" class="status-value">--</span> m/s
+                    </div>
+                    <div class="status-item-compact">
+                        <span class="status-label">Y速度:</span>
+                        <span id="statusCurrentYVel" class="status-value">--</span> m/s
+                    </div>
+                    <div class="status-item-compact">
+                        <span class="status-label">角度:</span>
+                        <span id="statusCurrentAngle" class="status-value">--</span>°
+                    </div>
+                    <div class="status-item-compact">
+                        <span class="status-label">合速度:</span>
+                        <span id="statusCurrentTotal" class="status-value">--</span> m/s
+                    </div>
+                </div>
+
+                <!-- Secondary row -->
+                <div class="shooter-row">
+                    <div class="row-label">Secondary</div>
+                    <div class="status-item-compact">
+                        <span class="status-label">X速度:</span>
+                        <span id="statusSecondaryXVel" class="status-value">--</span> m/s
+                    </div>
+                    <div class="status-item-compact">
+                        <span class="status-label">Y速度:</span>
+                        <span id="statusSecondaryYVel" class="status-value">--</span> m/s
+                    </div>
+                    <div class="status-item-compact">
+                        <span class="status-label">角度:</span>
+                        <span id="statusSecondaryAngle" class="status-value">--</span>°
+                    </div>
+                    <div class="status-item-compact">
+                        <span class="status-label">合速度:</span>
+                        <span id="statusSecondaryTotal" class="status-value">--</span> m/s
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container" id="chartContainer">
+            <canvas id="interpolationChart"></canvas>
+            <div id="hoverInfo" class="hover-info" style="display: none;">
+                <div class="hover-row"><strong>距离:</strong> <span id="hoverDistance">--</span> m</div>
+                <div class="hover-row"><strong>X速度:</strong> <span id="hoverX">--</span> m/s</div>
+                <div class="hover-row"><strong>Y速度:</strong> <span id="hoverY">--</span> m/s</div>
+                <div class="hover-row"><strong>角度:</strong> <span id="hoverAngle">--</span>°</div>
+                <div class="hover-row"><strong>总速度:</strong> <span id="hoverTotal">--</span> m/s</div>
+            </div>
+        </div>
+
+        <div class="constant-container" id="constantContainer" style="display: none;">
+            <h2>定速设置 (Constant Speed)</h2>
+            <div class="constant-form">
+                <h3>方式一：X/Y 速度</h3>
+                <div class="form-group">
+                    <label for="constantXVel">X 速度 (m/s):</label>
+                    <input type="number" id="constantXVel" step="0.1" />
+                </div>
+                <div class="form-group">
+                    <label for="constantYVel">Y 速度 (m/s):</label>
+                    <input type="number" id="constantYVel" step="0.1" />
+                </div>
+
+                <h3 style="margin-top: 20px;">方式二：角度/合速度</h3>
+                <div class="form-group">
+                    <label for="constantAngleInput">角度 (°):</label>
+                    <input type="number" id="constantAngleInput" step="0.1" />
+                </div>
+                <div class="form-group">
+                    <label for="constantTotalInput">合速度 (m/s):</label>
+                    <input type="number" id="constantTotalInput" step="0.1" min="0" />
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <p>💡 <strong>使用提示:</strong>
+                <strong>插值表:</strong> 拖动图表上的点修改插值表 | 双击空白处添加点 | 右键点击点位可输入坐标值 |
+                <strong>定速表:</strong> 直接输入X和Y速度值 |
+                <strong>通用:</strong> <strong>Ctrl+Enter</strong> 应用修改 | <strong>Ctrl+Z</strong> 撤销 |
+                <strong>Ctrl+Y</strong> 重做
+            </p>
+        </div>
+
+        <!-- Point Edit Modal -->
+        <div id="pointEditModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>编辑数据点</h2>
+                    <button class="modal-close" id="modalClose">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <label>距离 (m):</label>
+                        <input type="number" id="editDistance" step="0.01" min="0" />
+                    </div>
+
+                    <div class="input-mode-tabs">
+                        <button class="tab-btn active" data-mode="xy">X/Y 速度</button>
+                        <button class="tab-btn" data-mode="angle">角度/合速度</button>
+                    </div>
+
+                    <div id="xyMode" class="input-mode active">
+                        <div class="form-row">
+                            <label>X 速度 (m/s):</label>
+                            <input type="number" id="editXVel" step="0.01" min="0" />
+                        </div>
+                        <div class="form-row">
+                            <label>Y 速度 (m/s):</label>
+                            <input type="number" id="editYVel" step="0.01" min="0" />
+                        </div>
+                        <div class="calculated-values">
+                            <div class="calc-row">
+                                <span class="calc-label">角度:</span>
+                                <span id="calcAngle" class="calc-value">--</span>°
+                            </div>
+                            <div class="calc-row">
+                                <span class="calc-label">合速度:</span>
+                                <span id="calcTotal" class="calc-value">--</span> m/s
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="angleMode" class="input-mode">
+                        <div class="form-row">
+                            <label>角度 (°):</label>
+                            <input type="number" id="editAngle" step="0.1" />
+                        </div>
+                        <div class="form-row">
+                            <label>合速度 (m/s):</label>
+                            <input type="number" id="editTotal" step="0.01" min="0" />
+                        </div>
+                        <div class="calculated-values">
+                            <div class="calc-row">
+                                <span class="calc-label">X 速度:</span>
+                                <span id="calcXVel" class="calc-value">--</span> m/s
+                            </div>
+                            <div class="calc-row">
+                                <span class="calc-label">Y 速度:</span>
+                                <span id="calcYVel" class="calc-value">--</span> m/s
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-delete" id="btnDelete">删除点</button>
+                    <div class="modal-actions">
+                        <button class="btn-cancel" id="btnCancel">取消</button>
+                        <button class="btn-save" id="btnSave">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="chart.min.js"></script>
+    <script src="chartjs-plugin-dragdata.min.js"></script>
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "grid_size": 128,
+  "tabs": [
+    {
+      "name": "Match",
+      "grid_layout": {
+        "layouts": [],
+        "containers": [
+          {
+            "title": "Match Time",
+            "x": 768,
+            "y": 0,
+            "width": 256,
+            "height": 384,
+            "type": "Match Time",
+            "properties": {
+              "topic": "/SmartDashboard/Match Time",
+              "period": 0.06,
+              "data_type": "double",
+              "time_display_mode": "Minutes and Seconds",
+              "red_start_time": 20,
+              "yellow_start_time": 30
+            }
+          },
+          {
+            "title": "Game State",
+            "x": 768,
+            "y": 384,
+            "width": 256,
+            "height": 256,
+            "type": "Large Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Shifts/Game State",
+              "period": 0.06,
+              "data_type": "string"
+            }
+          },
+          {
+            "title": "Remaining Shift Time",
+            "x": 0,
+            "y": 128,
+            "width": 768,
+            "height": 512,
+            "type": "Large Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Shifts/Remaining Shift Time",
+              "period": 0.06,
+              "data_type": "string"
+            }
+          },
+          {
+            "title": "Shift Active",
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 128,
+            "type": "Boolean Box",
+            "properties": {
+              "topic": "/SmartDashboard/Shifts/Shift Active",
+              "period": 0.06,
+              "data_type": "boolean",
+              "true_color": 4283215696,
+              "false_color": 4294198070,
+              "true_icon": "None",
+              "false_icon": "None"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

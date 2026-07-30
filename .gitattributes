@@ -1,0 +1,7 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+assets/photonvision/*.jar filter=lfs diff=lfs merge=lfs -text
+assets/mack.jpg filter=lfs diff=lfs merge=lfs -text
+.ascope/**/*.glb filter=lfs diff=lfs merge=lfs -text
+src/main/deploy/shootingcalculator/*.js text eol=lf

@@ -1,0 +1,353 @@
+{
+  "version": 1,
+  "grid_size": 128,
+  "tabs": [
+    {
+      "name": "Match",
+      "grid_layout": {
+        "layouts": [],
+        "containers": [
+          {
+            "title": "Mode",
+            "x": 384,
+            "y": 0,
+            "width": 256,
+            "height": 128,
+            "type": "ComboBox Chooser",
+            "properties": {
+              "topic": "/SmartDashboard/Auto/Mode",
+              "period": 0.06,
+              "sort_options": false
+            }
+          },
+          {
+            "title": "Question #1 Chooser",
+            "x": 384,
+            "y": 256,
+            "width": 256,
+            "height": 128,
+            "type": "Split Button Chooser",
+            "properties": {
+              "topic": "/SmartDashboard/Auto/Question #1 Chooser",
+              "period": 0.06
+            }
+          },
+          {
+            "title": "Question #2 Chooser",
+            "x": 384,
+            "y": 512,
+            "width": 256,
+            "height": 128,
+            "type": "Split Button Chooser",
+            "properties": {
+              "topic": "/SmartDashboard/Auto/Question #2 Chooser",
+              "period": 0.06
+            }
+          },
+          {
+            "title": "IsRedAlliance",
+            "x": 0,
+            "y": 384,
+            "width": 128,
+            "height": 256,
+            "type": "Boolean Box",
+            "properties": {
+              "topic": "/FMSInfo/IsRedAlliance",
+              "period": 0.06,
+              "data_type": "boolean",
+              "true_color": 4283215696,
+              "false_color": 4294198070,
+              "true_icon": "None",
+              "false_icon": "None"
+            }
+          },
+          {
+            "title": "Alerts",
+            "x": 896,
+            "y": 128,
+            "width": 384,
+            "height": 512,
+            "type": "Alerts",
+            "properties": {
+              "topic": "/SmartDashboard/Alerts",
+              "period": 0.06
+            }
+          },
+          {
+            "title": "elasticPose",
+            "x": 128,
+            "y": 0,
+            "width": 256,
+            "height": 640,
+            "type": "Field",
+            "properties": {
+              "topic": "/SmartDashboard/elasticPose",
+              "period": 0.06,
+              "field_game": "Rebuilt",
+              "robot_width": 0.85,
+              "robot_length": 0.85,
+              "show_other_objects": true,
+              "show_trajectories": false,
+              "field_rotation": -90,
+              "robot_color": 4285989021,
+              "trajectory_color": 4278255394,
+              "show_robot_outside_widget": true
+            }
+          },
+          {
+            "title": "FMSInfo",
+            "x": 896,
+            "y": 0,
+            "width": 384,
+            "height": 128,
+            "type": "FMSInfo",
+            "properties": {
+              "topic": "/FMSInfo",
+              "period": 0.06
+            }
+          },
+          {
+            "title": "isUnderTrench",
+            "x": 0,
+            "y": 256,
+            "width": 128,
+            "height": 128,
+            "type": "Boolean Box",
+            "properties": {
+              "topic": "/SmartDashboard/isUnderTrench",
+              "period": 0.06,
+              "data_type": "boolean",
+              "true_color": 4283215696,
+              "false_color": 4294198070,
+              "true_icon": "None",
+              "false_icon": "None"
+            }
+          },
+          {
+            "title": "Question #1",
+            "x": 384,
+            "y": 128,
+            "width": 256,
+            "height": 128,
+            "type": "Large Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Auto/Question #1",
+              "period": 0.06,
+              "data_type": "string"
+            }
+          },
+          {
+            "title": "Question #2",
+            "x": 384,
+            "y": 384,
+            "width": 256,
+            "height": 128,
+            "type": "Large Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Auto/Question #2",
+              "period": 0.06,
+              "data_type": "string"
+            }
+          },
+          {
+            "title": "Match Time",
+            "x": 640,
+            "y": 0,
+            "width": 256,
+            "height": 128,
+            "type": "Match Time",
+            "properties": {
+              "topic": "/SmartDashboard/Match Time",
+              "period": 0.06,
+              "data_type": "double",
+              "time_display_mode": "Minutes and Seconds",
+              "red_start_time": 20,
+              "yellow_start_time": 30
+            }
+          },
+          {
+            "title": "Active First?",
+            "x": 640,
+            "y": 512,
+            "width": 256,
+            "height": 128,
+            "type": "Large Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Shifts/Active First?",
+              "period": 0.06,
+              "data_type": "string"
+            }
+          },
+          {
+            "title": "Game State",
+            "x": 640,
+            "y": 384,
+            "width": 256,
+            "height": 128,
+            "type": "Large Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Shifts/Game State",
+              "period": 0.06,
+              "data_type": "string"
+            }
+          },
+          {
+            "title": "Remaining Shift Time",
+            "x": 640,
+            "y": 128,
+            "width": 256,
+            "height": 128,
+            "type": "Large Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Shifts/Remaining Shift Time",
+              "period": 0.06,
+              "data_type": "string"
+            }
+          },
+          {
+            "title": "Shift Active",
+            "x": 640,
+            "y": 256,
+            "width": 256,
+            "height": 128,
+            "type": "Boolean Box",
+            "properties": {
+              "topic": "/SmartDashboard/Shifts/Shift Active",
+              "period": 0.06,
+              "data_type": "boolean",
+              "true_color": 4283215696,
+              "false_color": 4294198070,
+              "true_icon": "None",
+              "false_icon": "None"
+            }
+          },
+          {
+            "title": "Win Auto?",
+            "x": 0,
+            "y": 0,
+            "width": 128,
+            "height": 128,
+            "type": "Large Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Shifts/Win Auto?",
+              "period": 0.06,
+              "data_type": "string"
+            }
+          },
+          {
+            "title": "Dist Offset(m)",
+            "x": 0,
+            "y": 128,
+            "width": 128,
+            "height": 128,
+            "type": "Large Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Dist Offset(m)",
+              "period": 0.06,
+              "data_type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Live Debug",
+      "grid_layout": {
+        "layouts": [],
+        "containers": [
+          {
+            "title": "global",
+            "x": 384,
+            "y": 0,
+            "width": 128,
+            "height": 128,
+            "type": "Toggle Switch",
+            "properties": {
+              "topic": "/Tuning/liveDebugGroupChooser/global",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "indexer",
+            "x": 640,
+            "y": 128,
+            "width": 128,
+            "height": 128,
+            "type": "Toggle Switch",
+            "properties": {
+              "topic": "/Tuning/liveDebugGroupChooser/indexer",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "intake",
+            "x": 640,
+            "y": 0,
+            "width": 128,
+            "height": 128,
+            "type": "Toggle Switch",
+            "properties": {
+              "topic": "/Tuning/liveDebugGroupChooser/intake",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "odometry",
+            "x": 384,
+            "y": 256,
+            "width": 128,
+            "height": 128,
+            "type": "Toggle Switch",
+            "properties": {
+              "topic": "/Tuning/liveDebugGroupChooser/odometry",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "shooter",
+            "x": 640,
+            "y": 256,
+            "width": 128,
+            "height": 128,
+            "type": "Toggle Switch",
+            "properties": {
+              "topic": "/Tuning/liveDebugGroupChooser/shooter",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "swerve",
+            "x": 384,
+            "y": 384,
+            "width": 128,
+            "height": 128,
+            "type": "Toggle Switch",
+            "properties": {
+              "topic": "/Tuning/liveDebugGroupChooser/swerve",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "sim",
+            "x": 384,
+            "y": 128,
+            "width": 128,
+            "height": 128,
+            "type": "Toggle Switch",
+            "properties": {
+              "topic": "/Tuning/liveDebugGroupChooser/sim",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
