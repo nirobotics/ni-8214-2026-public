@@ -8,6 +8,7 @@ import com.nextinnovation.team8214.util.VirtualSubsystem;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation3d;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -43,6 +44,63 @@ public class Visualizer extends VirtualSubsystem {
     if (visualizationId >= 0) {
       indexToPath.put(visualizationId, path);
     }
+  }
+
+  /**
+   * Registers an assembled model that rotates about a center in its parent frame.
+   *
+   * <p>The supplier returns motion from the model's idle pose, without the center translation. The
+   * model must already contain its idle placement. Its center remains fixed during rotation, except
+   * for any translation supplied by the motion transform.
+   */
+  public void registerVisualizedComponent(
+      String parentName,
+      String childName,
+      int visualizationId,
+      Translation3d rotationCenter,
+      Supplier<Transform3d> transformSupplier) {
+    registerVisualizedComponent(
+        parentName,
+        childName,
+        visualizationId,
+        rotationCenter,
+        new Rotation3d(),
+        transformSupplier);
+  }
+
+  /**
+   * Registers a model with a fixed initial orientation and motion about a specified center.
+   *
+   * <p>The initial rotation is applied first, then the supplied motion rotation in the parent
+   * frame. The supplier only returns dynamic motion; the model already contains its idle
+   * translation.
+   */
+  public void registerVisualizedComponent(
+      String parentName,
+      String childName,
+      int visualizationId,
+      Translation3d rotationCenter,
+      Rotation3d initialRotation,
+      Supplier<Transform3d> transformSupplier) {
+    registerVisualizedComponent(
+        parentName,
+        childName,
+        visualizationId,
+        () -> applyRotationCenter(transformSupplier.get(), rotationCenter, initialRotation));
+  }
+
+  /** Returns motion about a center: t + center - R(center), with rotation R. */
+  public static Transform3d applyRotationCenter(Transform3d motion, Translation3d rotationCenter) {
+    return applyRotationCenter(motion, rotationCenter, new Rotation3d());
+  }
+
+  /** Applies initial orientation followed by dynamic motion about the model's center. */
+  public static Transform3d applyRotationCenter(
+      Transform3d motion, Translation3d rotationCenter, Rotation3d initialRotation) {
+    Rotation3d rotation = initialRotation.rotateBy(motion.getRotation());
+    return new Transform3d(
+        motion.getTranslation().plus(rotationCenter).minus(rotationCenter.rotateBy(rotation)),
+        rotation);
   }
 
   /**

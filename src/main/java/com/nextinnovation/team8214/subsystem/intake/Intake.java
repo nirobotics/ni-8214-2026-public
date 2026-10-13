@@ -227,8 +227,8 @@ public class Intake extends SubsystemBase {
   }
 
   public Transform3d getSwerveToIntakeTransform() {
-    return new Transform3d(0, 0.14, 0.28, new Rotation3d())
-        .plus(new Transform3d(0.0, 0.0, 0.0, new Rotation3d(-pivotInputs.positionRad, 0.0, 0.0)));
+    // The assembled GLB contains the idle translation; Visualizer supplies the pivot correction.
+    return new Transform3d(0.0, 0.0, 0.0, new Rotation3d(-pivotInputs.positionRad, 0.0, 0.0));
   }
 
   public void setGoal(IntakeGoal goal) {

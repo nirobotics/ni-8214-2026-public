@@ -123,9 +123,19 @@ public class RobotContainer {
         swerve::getRobotToSwerveTransform);
 
     visualizer.registerVisualizedComponent(
-        "swerve", "shooter", VisualizerModelIndex.SHOOTER, shooter::getSwerveToShooterTransform);
+        "swerve",
+        "shooter",
+        VisualizerModelIndex.SHOOTER,
+        new Translation3d(0.0, 0.430, -0.275),
+        new Rotation3d(Units.degreesToRadians(-80.0), 0.0, 0.0),
+        shooter::getSwerveToShooterTransform);
     visualizer.registerVisualizedComponent(
-        "swerve", "intake", VisualizerModelIndex.INTAKE, intake::getSwerveToIntakeTransform);
+        "swerve",
+        "intake",
+        VisualizerModelIndex.INTAKE,
+        new Translation3d(0.0, 0.14, 0.28),
+        new Rotation3d(),
+        intake::getSwerveToIntakeTransform);
     visualizer.registerVisualizedComponent(
         "swerve",
         "hopper",

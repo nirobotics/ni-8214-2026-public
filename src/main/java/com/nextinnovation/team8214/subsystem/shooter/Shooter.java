@@ -445,13 +445,8 @@ public class Shooter extends SubsystemBase {
   }
 
   public Transform3d getSwerveToShooterTransform() {
-    return new Transform3d(0.0, 0.430, -0.27500, new Rotation3d())
-        .plus(
-            new Transform3d(
-                0.0,
-                0.0,
-                0.0,
-                new Rotation3d(Units.degreesToRadians(-80.0) + pitchInputs.positionRad, 0.0, 0.0)));
+    // Visualizer supplies the model's initial orientation and pivot correction.
+    return new Transform3d(0.0, 0.0, 0.0, new Rotation3d(pitchInputs.positionRad, 0.0, 0.0));
   }
 
   public Command getHomeCmd() {
